@@ -10,7 +10,7 @@ export const BodyModal = styled.div`
     background-color: rgba(0,0,0,0.8);
     width: 100%;
     height: 100vh;
-    z-index:999;
+    z-index:9;
     flex:1
     display: flex;
     align-items: center;
@@ -19,11 +19,10 @@ export const BodyModal = styled.div`
 `
 
 export const ModalContent = styled.div`
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    width:100%
-    height: 100vh;
+    flex: 1; 
+    align-items: center;  
+    flex-direction: column;
     display: flex;
-    padding-top:50px
+    padding-top:50px;
+    z-index: 9999
 `

@@ -6,7 +6,7 @@ type Props = {
 export default function Modal({ children }: Props) {
     return (
         <BodyModal>
-            <ModalContent>
+            <ModalContent >
                 {children}
             </ModalContent>
         </BodyModal>

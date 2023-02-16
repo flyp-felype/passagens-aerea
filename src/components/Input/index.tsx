@@ -5,16 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faCalendarDays
 } from "@fortawesome/free-solid-svg-icons";
+import { ReactNode } from "react";
 
-export default function InputComponent() {
+
+type Props = {
+    children: ReactNode,
+    onClick: () => any
+}
+export default function InputComponent({ children, onClick }: Props) {
     return (
-        <>
-            <InputDate>
-                <FontAwesomeIcon icon={faCalendarDays} />
-                <Label>
-                    Selecione sua data
-                </Label>
-            </InputDate>
-        </>
+        <InputDate onClick={onClick}>
+            <FontAwesomeIcon icon={faCalendarDays} />
+            {children}
+        </InputDate>
     )
 }
