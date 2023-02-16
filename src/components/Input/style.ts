@@ -6,8 +6,8 @@ export const InputDate = styled.div`
     padding:5px 10px 5px 10px; 
     margin-left: 10px;
     margin-right: 10px;
-    height:35px;
-    width:250px;
+    height:50px;
+    width:300px;
     flex:1
 `
 

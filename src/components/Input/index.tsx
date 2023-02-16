@@ -14,9 +14,12 @@ type Props = {
 }
 export default function InputComponent({ children, onClick }: Props) {
     return (
-        <InputDate onClick={onClick}>
-            <FontAwesomeIcon icon={faCalendarDays} />
-            {children}
+        <InputDate>
+
+            <div className="flex flex-row">
+                <FontAwesomeIcon  onClick={onClick} icon={faCalendarDays} fontSize={20} style={{marginTop:7, marginRight:10}} />
+                {children}
+            </div>
         </InputDate>
     )
 }

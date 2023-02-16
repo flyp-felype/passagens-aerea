@@ -5,14 +5,21 @@ export const Tag = styled.div`
     background-color: blue;
     width:50px;
     margin-left:3px;
-    margin-right:3px
+    margin-right:3px;
+    padding:2px;
+   cursor: pointer;
+    &:hover  {
+
+        background-color: red 
+    }
 `
 
 export const Label = styled.p`
     color: white;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
-    width:50px;
-    line-height: 20px
+    padding:1px; 
+    line-height: 16px;
+  
 `
