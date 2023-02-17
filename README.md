@@ -7,7 +7,7 @@ Projeto para teste Voopter
 
 
 # Atividades
-- [ ] *Tarefa número 1:*
+- [x] *Tarefa número 1:*
 Calendário multidatas
 
 
