@@ -15,8 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import rulesDates from '@/helper/ruleDates'
 
 type PropsResult = {
-  sucess: Boolean;
-  mensagem: String
+  success: Boolean;
+  mensagem?: String
 }
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState<Boolean>(false)
@@ -105,13 +105,19 @@ export default function Home() {
     const ruleService = new rulesDates(tagDate, tagDateVolta)
     let retorno: PropsResult;
     retorno = ruleService.datasVazias()
-    if (retorno.sucess === false) {
+    if (retorno.success === false) {
       toast.error(retorno.mensagem)
+      return;
     }
 
     retorno = ruleService.dateVoltaMenorDateIda()
-    if (retorno.sucess === false) {
+    if (retorno.success === false) {
       toast.error(retorno.mensagem)
+      return;
+    }
+
+    if(retorno.success === true){
+      toast.success('Todas regras validadas com sucesso!')
     }
 
 
@@ -140,10 +146,10 @@ export default function Home() {
             {tagDateVolta && tagDateVolta.length !== 0 ?
               <div className="flex flex-row">
                 {tagDateVolta.map((item, index) => {
-                  return <Tags key={index} onClick={removeDate} value={item} />
+                  return <Tags key={index} onClick={removeDateVolta} value={item} />
                 })}
               </div>
-              : <Label onClick={modalDateIda}>Até 4 Datas</Label>}
+              : <Label onClick={modalDateVolta}>Até 4 Datas</Label>}
 
           </InputComponent>
           <button onClick={validateRules} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
