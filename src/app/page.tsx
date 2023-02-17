@@ -12,7 +12,12 @@ import Tags from '@/components/Tags'
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import rulesDates from '@/helper/ruleDates'
 
+type PropsResult = {
+  sucess: Boolean;
+  mensagem: String
+}
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState<Boolean>(false)
   const [visibleModalVolta, setVisibleModalVolta] = useState<Boolean>(false)
@@ -45,12 +50,10 @@ export default function Home() {
             tags.push(...arrayData, dateFormat)
             return tags
           }
-
           else {
             tags.push(dateFormat)
             return tags
           }
-
         }
 
       } else {
@@ -61,7 +64,6 @@ export default function Home() {
       tags.push(dateFormat)
       return tags
     }
-
 
   }
 
@@ -81,8 +83,8 @@ export default function Home() {
   function onChangeDateIda(value: any, event: any) {
     let tags: String[] | undefined = formatArrayDate(value, tagDate);
     setTagDate(tags)
-
   }
+
 
   function onChangeDateVolta(value: string, event: any) {
     let tags: String[] | undefined = formatArrayDate(value, tagDateVolta);
@@ -99,6 +101,21 @@ export default function Home() {
       setTagDateVolta(removeArrayDate(data, tagDateVolta))
   }
 
+  function validateRules() {
+    const ruleService = new rulesDates(tagDate, tagDateVolta)
+    let retorno: PropsResult;
+    retorno = ruleService.datasVazias()
+    if (retorno.sucess === false) {
+      toast.error(retorno.mensagem)
+    }
+
+    retorno = ruleService.dateVoltaMenorDateIda()
+    if (retorno.sucess === false) {
+      toast.error(retorno.mensagem)
+    }
+
+
+  }
   return (
     <div>
       <div className="flex flex-row">
@@ -116,7 +133,7 @@ export default function Home() {
                     return <Tags key={index} onClick={removeDate} value={item} />
                   })}
                 </div>
-                : <Label>Até 4 Datas</Label>}
+                : <Label onClick={modalDateIda}>Até 4 Datas</Label>}
             </Label>
           </InputComponent>
           <InputComponent onClick={modalDateVolta}>
@@ -126,10 +143,12 @@ export default function Home() {
                   return <Tags key={index} onClick={removeDate} value={item} />
                 })}
               </div>
-              : <Label>Até 4 Datas</Label>}
+              : <Label onClick={modalDateIda}>Até 4 Datas</Label>}
 
           </InputComponent>
-
+          <button onClick={validateRules} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Pesquisar
+          </button>
         </div>
       </div>
       {visibleModal &&
